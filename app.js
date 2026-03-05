@@ -1,37 +1,44 @@
-let users = JSON.parse(localStorage.getItem("users")) || []
-let produtos = JSON.parse(localStorage.getItem("produtos")) || []
+let usuarios = JSON.parse(localStorage.getItem("usuarios")) || []
+let pecas = JSON.parse(localStorage.getItem("pecas")) || []
 let vendas = JSON.parse(localStorage.getItem("vendas")) || []
 
-function register(){
+function criarConta(){
 
-let u = regUser.value
-let p = regPass.value
+let u = novoUser.value
+let p = novoPass.value
 
-users.push({user:u,pass:p})
+usuarios.push({user:u,pass:p})
 
-localStorage.setItem("users",JSON.stringify(users))
+localStorage.setItem("usuarios",JSON.stringify(usuarios))
 
-alert("Usuário criado")
+alert("Conta criada")
+
+irLogin()
+
+}
+
+function irLogin(){
+
+cadastro.classList.add("oculto")
+login.classList.remove("oculto")
 
 }
 
 function login(){
 
-let u = loginUser.value
-let p = loginPass.value
+let u = userLogin.value
+let p = passLogin.value
 
-let ok = users.find(x=>x.user==u && x.pass==p)
+let ok = usuarios.find(x=>x.user==u && x.pass==p)
 
 if(ok){
 
-login.style.display="none"
-dashboard.style.display="block"
-
-openPage("produtos")
+login.classList.add("oculto")
+painel.classList.remove("oculto")
 
 }else{
 
-alert("Login inválido")
+alert("login errado")
 
 }
 
@@ -43,15 +50,15 @@ location.reload()
 
 }
 
-function openPage(p){
+function abrir(p){
 
-document.querySelectorAll(".page").forEach(x=>x.style.display="none")
+document.querySelectorAll(".pagina").forEach(x=>x.classList.add("oculto"))
 
-document.getElementById(p).style.display="block"
+document.getElementById(p).classList.remove("oculto")
 
 }
 
-function addProduto(){
+function addPeca(){
 
 let p = {
 
@@ -61,21 +68,21 @@ preco:precoPeca.value
 
 }
 
-produtos.push(p)
+pecas.push(p)
 
-localStorage.setItem("produtos",JSON.stringify(produtos))
+localStorage.setItem("pecas",JSON.stringify(pecas))
 
-showProdutos()
+mostrarPecas()
 
 }
 
-function showProdutos(){
+function mostrarPecas(){
 
-listaProdutos.innerHTML=""
+listaPecas.innerHTML=""
 
-produtos.forEach(p=>{
+pecas.forEach(p=>{
 
-listaProdutos.innerHTML+=`
+listaPecas.innerHTML+=`
 <tr>
 <td>${p.nome}</td>
 <td>${p.marca}</td>
@@ -91,9 +98,9 @@ function addVenda(){
 
 let v = {
 
-cliente:cliente.value,
-produto:produto.value,
-valor:Number(valor.value)
+cliente:clienteVenda.value,
+produto:produtoVenda.value,
+valor:valorVenda.value
 
 }
 
@@ -101,13 +108,11 @@ vendas.push(v)
 
 localStorage.setItem("vendas",JSON.stringify(vendas))
 
-showVendas()
-
-relatorio()
+mostrarVendas()
 
 }
 
-function showVendas(){
+function mostrarVendas(){
 
 listaVendas.innerHTML=""
 
@@ -125,14 +130,5 @@ listaVendas.innerHTML+=`
 
 }
 
-function relatorio(){
-
-let total = vendas.reduce((s,v)=>s+v.valor,0)
-
-totalVendas.innerText="Total vendido: R$ "+total
-
-}
-
-showProdutos()
-showVendas()
-relatorio()
+mostrarPecas()
+mostrarVendas()
