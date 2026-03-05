@@ -2,57 +2,69 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Painel da Empresa</title>
+<title>Sistema Empresarial</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div id="loginBox">
-<h2>Sistema da Empresa</h2>
+<div id="login">
 
-<input id="user" placeholder="Usuário">
-<input id="pass" type="password" placeholder="Senha">
+<h1>Sistema Empresarial</h1>
+
+<input id="loginUser" placeholder="Usuário">
+<input id="loginPass" type="password" placeholder="Senha">
 
 <button onclick="login()">Entrar</button>
+
+<h3>Criar Conta</h3>
+
+<input id="regUser" placeholder="Novo usuário">
+<input id="regPass" type="password" placeholder="Nova senha">
+
+<button onclick="register()">Cadastrar</button>
+
 </div>
 
-
-<div id="painel" style="display:none">
+<div id="dashboard">
 
 <header>
+
 <h2>Painel da Empresa</h2>
+
 <button onclick="logout()">Sair</button>
+
 </header>
 
-<nav>
-<button onclick="pagina('pecas')">Peças</button>
-<button onclick="pagina('vendas')">Vendas</button>
-<button onclick="pagina('anotacoes')">Anotações</button>
-</nav>
+<div class="menu">
 
-<section id="pecas" class="page">
+<button onclick="openPage('produtos')">Peças</button>
+<button onclick="openPage('vendas')">Vendas</button>
+<button onclick="openPage('relatorio')">Relatório</button>
+
+</div>
+
+<section id="produtos" class="page">
 
 <h3>Cadastrar Peça</h3>
 
-<input id="nomePeca" placeholder="Nome da peça">
+<input id="nomePeca" placeholder="Nome">
 <input id="marcaPeca" placeholder="Marca">
-<input id="modeloPeca" placeholder="Modelo">
 <input id="precoPeca" placeholder="Preço">
 
-<button onclick="addPeca()">Cadastrar</button>
+<button onclick="addProduto()">Cadastrar</button>
 
 <table>
+
 <thead>
 <tr>
-<th>Peça</th>
+<th>Produto</th>
 <th>Marca</th>
-<th>Modelo</th>
 <th>Preço</th>
 </tr>
 </thead>
 
-<tbody id="listaPecas"></tbody>
+<tbody id="listaProdutos"></tbody>
 
 </table>
 
@@ -63,19 +75,18 @@
 
 <h3>Registrar Venda</h3>
 
-<input id="clienteVenda" placeholder="Cliente">
-<input id="produtoVenda" placeholder="Produto">
-<input id="quantidadeVenda" placeholder="Quantidade">
-<input id="valorVenda" placeholder="Valor">
+<input id="cliente" placeholder="Cliente">
+<input id="produto" placeholder="Produto">
+<input id="valor" placeholder="Valor">
 
 <button onclick="addVenda()">Registrar</button>
 
 <table>
+
 <thead>
 <tr>
 <th>Cliente</th>
 <th>Produto</th>
-<th>Qtd</th>
 <th>Valor</th>
 </tr>
 </thead>
@@ -87,15 +98,11 @@
 </section>
 
 
-<section id="anotacoes" class="page">
+<section id="relatorio" class="page">
 
-<h3>Anotações</h3>
+<h3>Relatório de vendas</h3>
 
-<textarea id="nota" placeholder="Digite uma anotação"></textarea>
-
-<button onclick="addNota()">Salvar</button>
-
-<ul id="listaNotas"></ul>
+<p id="totalVendas"></p>
 
 </section>
 
