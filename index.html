@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Painel da Empresa</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="loginBox">
+<h2>Sistema da Empresa</h2>
+
+<input id="user" placeholder="Usuário">
+<input id="pass" type="password" placeholder="Senha">
+
+<button onclick="login()">Entrar</button>
+</div>
+
+
+<div id="painel" style="display:none">
+
+<header>
+<h2>Painel da Empresa</h2>
+<button onclick="logout()">Sair</button>
+</header>
+
+<nav>
+<button onclick="pagina('pecas')">Peças</button>
+<button onclick="pagina('vendas')">Vendas</button>
+<button onclick="pagina('anotacoes')">Anotações</button>
+</nav>
+
+<section id="pecas" class="page">
+
+<h3>Cadastrar Peça</h3>
+
+<input id="nomePeca" placeholder="Nome da peça">
+<input id="marcaPeca" placeholder="Marca">
+<input id="modeloPeca" placeholder="Modelo">
+<input id="precoPeca" placeholder="Preço">
+
+<button onclick="addPeca()">Cadastrar</button>
+
+<table>
+<thead>
+<tr>
+<th>Peça</th>
+<th>Marca</th>
+<th>Modelo</th>
+<th>Preço</th>
+</tr>
+</thead>
+
+<tbody id="listaPecas"></tbody>
+
+</table>
+
+</section>
+
+
+<section id="vendas" class="page">
+
+<h3>Registrar Venda</h3>
+
+<input id="clienteVenda" placeholder="Cliente">
+<input id="produtoVenda" placeholder="Produto">
+<input id="quantidadeVenda" placeholder="Quantidade">
+<input id="valorVenda" placeholder="Valor">
+
+<button onclick="addVenda()">Registrar</button>
+
+<table>
+<thead>
+<tr>
+<th>Cliente</th>
+<th>Produto</th>
+<th>Qtd</th>
+<th>Valor</th>
+</tr>
+</thead>
+
+<tbody id="listaVendas"></tbody>
+
+</table>
+
+</section>
+
+
+<section id="anotacoes" class="page">
+
+<h3>Anotações</h3>
+
+<textarea id="nota" placeholder="Digite uma anotação"></textarea>
+
+<button onclick="addNota()">Salvar</button>
+
+<ul id="listaNotas"></ul>
+
+</section>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
