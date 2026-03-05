@@ -1,52 +1,55 @@
 body{
 font-family:Arial;
-background:#121212;
+background:#0f172a;
 color:white;
 margin:0;
 }
 
+#login{
+width:320px;
+margin:120px auto;
+background:#1e293b;
+padding:30px;
+border-radius:10px;
+text-align:center;
+}
+
+input{
+width:90%;
+padding:10px;
+margin:5px;
+border-radius:5px;
+border:none;
+}
+
+button{
+padding:10px;
+margin:5px;
+background:#3b82f6;
+border:none;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#2563eb;
+}
+
 header{
-background:#ff6600;
+background:#1e293b;
 padding:15px;
 display:flex;
 justify-content:space-between;
 }
 
-nav{
-background:#1f1f1f;
+.menu{
+background:#020617;
 padding:10px;
 }
 
-nav button{
+.menu button{
 margin-right:10px;
-}
-
-input,textarea,button{
-padding:10px;
-margin:5px;
-border:none;
-border-radius:5px;
-}
-
-button{
-background:#ff6600;
-color:white;
-cursor:pointer;
-}
-
-button:hover{
-background:#ff4500;
-}
-
-table{
-width:100%;
-margin-top:10px;
-border-collapse:collapse;
-}
-
-th,td{
-padding:8px;
-border-bottom:1px solid #333;
 }
 
 .page{
@@ -54,11 +57,17 @@ display:none;
 padding:20px;
 }
 
-#loginBox{
-width:300px;
-margin:150px auto;
-background:#1f1f1f;
-padding:20px;
-border-radius:10px;
-text-align:center;
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+
+th,td{
+padding:10px;
+border-bottom:1px solid #334155;
+}
+
+#dashboard{
+display:none;
 }
