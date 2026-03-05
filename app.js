@@ -1,65 +1,84 @@
-let pecas = JSON.parse(localStorage.getItem("pecas")) || []
+let users = JSON.parse(localStorage.getItem("users")) || []
+let produtos = JSON.parse(localStorage.getItem("produtos")) || []
 let vendas = JSON.parse(localStorage.getItem("vendas")) || []
-let notas = JSON.parse(localStorage.getItem("notas")) || []
+
+function register(){
+
+let u = regUser.value
+let p = regPass.value
+
+users.push({user:u,pass:p})
+
+localStorage.setItem("users",JSON.stringify(users))
+
+alert("Usuário criado")
+
+}
 
 function login(){
 
-let u = document.getElementById("user").value
-let p = document.getElementById("pass").value
+let u = loginUser.value
+let p = loginPass.value
 
-if(u==="admin" && p==="123"){
-document.getElementById("loginBox").style.display="none"
-document.getElementById("painel").style.display="block"
-pagina("pecas")
+let ok = users.find(x=>x.user==u && x.pass==p)
+
+if(ok){
+
+login.style.display="none"
+dashboard.style.display="block"
+
+openPage("produtos")
+
 }else{
+
 alert("Login inválido")
+
 }
 
 }
 
 function logout(){
+
 location.reload()
-}
-
-function pagina(id){
-
-document.querySelectorAll(".page").forEach(p=>{
-p.style.display="none"
-})
-
-document.getElementById(id).style.display="block"
 
 }
 
+function openPage(p){
 
-function addPeca(){
+document.querySelectorAll(".page").forEach(x=>x.style.display="none")
+
+document.getElementById(p).style.display="block"
+
+}
+
+function addProduto(){
 
 let p = {
-nome: nomePeca.value,
-marca: marcaPeca.value,
-modelo: modeloPeca.value,
-preco: precoPeca.value
-}
 
-pecas.push(p)
-
-localStorage.setItem("pecas",JSON.stringify(pecas))
-
-mostrarPecas()
+nome:nomePeca.value,
+marca:marcaPeca.value,
+preco:precoPeca.value
 
 }
 
-function mostrarPecas(){
+produtos.push(p)
 
-listaPecas.innerHTML=""
+localStorage.setItem("produtos",JSON.stringify(produtos))
 
-pecas.forEach(p=>{
+showProdutos()
 
-listaPecas.innerHTML+=`
+}
+
+function showProdutos(){
+
+listaProdutos.innerHTML=""
+
+produtos.forEach(p=>{
+
+listaProdutos.innerHTML+=`
 <tr>
 <td>${p.nome}</td>
 <td>${p.marca}</td>
-<td>${p.modelo}</td>
 <td>${p.preco}</td>
 </tr>
 `
@@ -71,21 +90,24 @@ listaPecas.innerHTML+=`
 function addVenda(){
 
 let v = {
-cliente:clienteVenda.value,
-produto:produtoVenda.value,
-qtd:quantidadeVenda.value,
-valor:valorVenda.value
+
+cliente:cliente.value,
+produto:produto.value,
+valor:Number(valor.value)
+
 }
 
 vendas.push(v)
 
 localStorage.setItem("vendas",JSON.stringify(vendas))
 
-mostrarVendas()
+showVendas()
+
+relatorio()
 
 }
 
-function mostrarVendas(){
+function showVendas(){
 
 listaVendas.innerHTML=""
 
@@ -95,7 +117,6 @@ listaVendas.innerHTML+=`
 <tr>
 <td>${v.cliente}</td>
 <td>${v.produto}</td>
-<td>${v.qtd}</td>
 <td>${v.valor}</td>
 </tr>
 `
@@ -104,28 +125,14 @@ listaVendas.innerHTML+=`
 
 }
 
-function addNota(){
+function relatorio(){
 
-notas.push(nota.value)
+let total = vendas.reduce((s,v)=>s+v.valor,0)
 
-localStorage.setItem("notas",JSON.stringify(notas))
-
-mostrarNotas()
+totalVendas.innerText="Total vendido: R$ "+total
 
 }
 
-function mostrarNotas(){
-
-listaNotas.innerHTML=""
-
-notas.forEach(n=>{
-
-listaNotas.innerHTML+=`<li>${n}</li>`
-
-})
-
-}
-
-mostrarPecas()
-mostrarVendas()
-mostrarNotas()
+showProdutos()
+showVendas()
+relatorio()
