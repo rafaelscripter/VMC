@@ -2,82 +2,94 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Sistema Empresarial</title>
+<title>Sistema Empresa</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div id="login">
+<!-- CADASTRO -->
+<div id="cadastro" class="tela">
 
-<h1>Sistema Empresarial</h1>
+<h2>Criar conta</h2>
 
-<input id="loginUser" placeholder="Usuário">
-<input id="loginPass" type="password" placeholder="Senha">
+<input id="novoUser" placeholder="Usuário">
+<input id="novoPass" type="password" placeholder="Senha">
 
-<button onclick="login()">Entrar</button>
+<button onclick="criarConta()">Cadastrar</button>
 
-<h3>Criar Conta</h3>
-
-<input id="regUser" placeholder="Novo usuário">
-<input id="regPass" type="password" placeholder="Nova senha">
-
-<button onclick="register()">Cadastrar</button>
+<p>Já tem conta?</p>
+<button onclick="irLogin()">Ir para login</button>
 
 </div>
 
-<div id="dashboard">
+
+<!-- LOGIN -->
+<div id="login" class="tela oculto">
+
+<h2>Login</h2>
+
+<input id="userLogin" placeholder="Usuário">
+<input id="passLogin" type="password" placeholder="Senha">
+
+<button onclick="login()">Entrar</button>
+
+</div>
+
+
+<!-- PAINEL -->
+<div id="painel" class="oculto">
 
 <header>
 
-<h2>Painel da Empresa</h2>
+<h2>Painel da empresa</h2>
 
-<button onclick="logout()">Sair</button>
+<button class="sair" onclick="logout()">Sair</button>
 
 </header>
 
 <div class="menu">
 
-<button onclick="openPage('produtos')">Peças</button>
-<button onclick="openPage('vendas')">Vendas</button>
-<button onclick="openPage('relatorio')">Relatório</button>
+<button onclick="abrir('pecas')">Peças</button>
+<button onclick="abrir('vendas')">Vendas</button>
 
 </div>
 
-<section id="produtos" class="page">
 
-<h3>Cadastrar Peça</h3>
+<section id="pecas" class="pagina">
 
-<input id="nomePeca" placeholder="Nome">
+<h3>Cadastrar peça</h3>
+
+<input id="nomePeca" placeholder="Nome da peça">
 <input id="marcaPeca" placeholder="Marca">
 <input id="precoPeca" placeholder="Preço">
 
-<button onclick="addProduto()">Cadastrar</button>
+<button onclick="addPeca()">Cadastrar</button>
 
 <table>
 
 <thead>
 <tr>
-<th>Produto</th>
+<th>Peça</th>
 <th>Marca</th>
 <th>Preço</th>
 </tr>
 </thead>
 
-<tbody id="listaProdutos"></tbody>
+<tbody id="listaPecas"></tbody>
 
 </table>
 
 </section>
 
 
-<section id="vendas" class="page">
+<section id="vendas" class="pagina oculto">
 
-<h3>Registrar Venda</h3>
+<h3>Registrar venda</h3>
 
-<input id="cliente" placeholder="Cliente">
-<input id="produto" placeholder="Produto">
-<input id="valor" placeholder="Valor">
+<input id="clienteVenda" placeholder="Cliente">
+<input id="produtoVenda" placeholder="Produto">
+<input id="valorVenda" placeholder="Valor">
 
 <button onclick="addVenda()">Registrar</button>
 
@@ -94,15 +106,6 @@
 <tbody id="listaVendas"></tbody>
 
 </table>
-
-</section>
-
-
-<section id="relatorio" class="page">
-
-<h3>Relatório de vendas</h3>
-
-<p id="totalVendas"></p>
 
 </section>
 
